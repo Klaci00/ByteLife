@@ -1,0 +1,87 @@
+﻿<Window x:Class="ByteLife2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ByteLife2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid x:Name="createPlayer" Visibility="Visible" Panel.ZIndex="1" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30" Content="Create yourself!" FontWeight="DemiBold" HorizontalContentAlignment="Center" Height="50" Width="300"  TextBlock.TextAlignment="Center">
+                </Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="First Name:" Height="30" Width="100"></Label>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="firstnameInput" Height="30" Width="260" TextChanged="firstnameInput_TextChanged"></TextBox>
+                <Label Grid.Row="2" Grid.Column="0" Content="Last Name:" Height="30" Width="100" ></Label>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="lastnameInput" Height="30" Width="260" TextChanged="firstnameInput_TextChanged"></TextBox>
+                <Label Grid.Row="3" Grid.Column="0" Content="Gender:" Height="30" Width="100"></Label>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"  >
+                    <RadioButton x:Name="maleRadioButton" Content="Male" GroupName="GenderGroup" Margin="0,0,10,0"/>
+                    <RadioButton x:Name="femaleRadioButton" Content="Female" GroupName="GenderGroup"/>
+                </StackPanel>
+                <Label Grid.Row="4" Grid.Column="0" Content="Country:" Height="30" Width="100" ></Label>
+                <ComboBox Grid.Row="4" Grid.Column="1" x:Name="countryChooser" DisplayMemberPath="Name" Height="30" Width="260" SelectionChanged="countryChooser_SelectionChanged" ></ComboBox>
+                <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="START" Height="Auto" Width="300" FontSize="20" FontWeight="DemiBold" x:Name="startgame" Click="startgame_Click"></Button>
+            </Grid>
+
+        </Grid>
+        <TabControl Panel.ZIndex="0" x:Name="tabcontr">
+        <TabItem Header="Main">
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox TextWrapping="Wrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Height="Auto" x:Name="mainText" Width="Auto" TextChanged="MainText_TextChanged"/>
+                <Button Content="Play" Grid.Row="1" Height="30" Width="100" x:Name="play" Click="Play_Click" HorizontalAlignment="Left"/>
+                <Button Content="Create People" Grid.Row="1" Grid.Column="1" Height="30" Width="100" Click="CreatePeople" HorizontalAlignment="Left"/>
+                <Label Content="Name:" Grid.Row="2" Grid.Column="2" Height="30" Width="60"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" Height="30" x:Name="namebox"/>
+                <Label Content="Country:" Grid.Row="3" Grid.Column="2" Height="30" Width="60"/>
+                <TextBlock Grid.Row="3" Grid.Column="3" Height="30" x:Name="countrybox"/>
+                <Label Content="Age:" Grid.Row="4" Grid.Column="2" Height="30" Width="60"/>
+                <TextBlock Grid.Row="4" Grid.Column="3" Height="30" x:Name="agebox"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Family" >
+            <Grid>
+                <ListView x:Name="relationshipListView" Margin="10">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Person 1" DisplayMemberBinding="{Binding Person1.FullName}" Width="150"/>
+                            <GridViewColumn Header="Person 2" DisplayMemberBinding="{Binding Person2.FullName}" Width="150"/>
+                            <GridViewColumn Header="Condition" Width="200">
+                            </GridViewColumn>
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="350"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </TabItem>
+    </TabControl>
+    </Grid>
+</Window>
+
