@@ -10,7 +10,7 @@ namespace ByteLife2
     {
         public static List<Country> peacefulCountries = Country.countryList.Where(x => !x.AtWar).ToList();
         public static List<List<Country>> Wars = [];
-
+        public static List<Person> peoplePool = new List<Person>();
         public static void RunRender()
         {
 

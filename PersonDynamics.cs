@@ -27,6 +27,16 @@ namespace ByteLife2
             mother.Age = motherAge;
             List<Person> siblings = Person.Siblings(Random, player, mother);
             Relationship.FamilyRelationshipRenderer(player, father, mother, siblings);
+            Render.peoplePool.Add(player);
+            Render.peoplePool.Add(mother);
+            Render.peoplePool.Add(father);
+            if (siblings.Count > 0)
+            {
+                foreach (Person s in siblings)
+                {
+                    Render.peoplePool.Add(s);
+                }
+            }
         }
 
 

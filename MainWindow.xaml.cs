@@ -16,7 +16,6 @@ namespace ByteLife2
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private Start _startWindow;
         private Person _player;
         public MainWindow()
         {
@@ -26,14 +25,9 @@ namespace ByteLife2
             tabcontr.Visibility = Visibility.Collapsed;
             startgame.IsEnabled = false;
             countryChooser.ItemsSource=Country.countryList;
-            // _startWindow = new Start();
-            // _startWindow.Visibility = Visibility.Visible;
-            // _startWindow.StartGameClicked += StartWindow_StartGameClicked;
         }
         private void StartWindow_StartGameClicked(object sender, EventArgs e)
         {
-            // _startWindow.Visibility=Visibility.Collapsed;
-            // _player = _startWindow.CreatePerson();
             countrybox.Text = _player.Country.Name;
             agebox.Text = _player.Age.ToString();
             namebox.Text = _player.FirstName + " " + _player.LastName;
@@ -45,12 +39,13 @@ namespace ByteLife2
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            mainText.Text = News.NewsWriter;
-            foreach (Relationship relationship in _player.Relationships)
+            Flow.Cycle(Render.peoplePool);
+            foreach(Person person in Render.peoplePool)
             {
-                News.NewsAdder(relationship.Person2.FirstName + relationship.Person2.LastName + relationship.Description);
+                News.NewsAdder($"{person.FullName}, age: {person.Age}");
             }
-
+            Refresh();
+            relationshipListView.Items.Refresh();
         }
 
         private void CreatePeople(object sender, RoutedEventArgs e)
@@ -92,11 +87,17 @@ namespace ByteLife2
             namebox.Text = player.FullName;
             relationshipListView.ItemsSource = player.Relationships;
             mainText.Text = News.NewsWriter;
+            _player = player;
         }
         private void MainText_TextChanged(object sender, TextChangedEventArgs e)
         {
             mainText.ScrollToEnd();
         }
-
+        private void Refresh()
+        {
+            relationshipListView.ItemsSource=_player.Relationships;
+            agebox.Text = _player.Age.ToString();
+            mainText.Text = News.NewsWriter;
+        }
     }
 }

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="createPlayer" Visibility="Visible" Panel.ZIndex="1" >
+        <Grid x:Name="createPlayer" Visibility="Hidden" Panel.ZIndex="1" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
@@ -40,7 +40,7 @@
 
         </Grid>
         <TabControl Panel.ZIndex="0" x:Name="tabcontr">
-        <TabItem Header="Main">
+        <TabItem Header="Main" >
             
             <Grid>
                 <Grid.RowDefinitions>
@@ -62,8 +62,8 @@
                 <TextBlock Grid.Row="2" Grid.Column="3" Height="30" x:Name="namebox"/>
                 <Label Content="Country:" Grid.Row="3" Grid.Column="2" Height="30" Width="60"/>
                 <TextBlock Grid.Row="3" Grid.Column="3" Height="30" x:Name="countrybox"/>
-                <Label Content="Age:" Grid.Row="4" Grid.Column="2" Height="30" Width="60"/>
-                <TextBlock Grid.Row="4" Grid.Column="3" Height="30" x:Name="agebox"/>
+                <Label Content="Age:" Grid.Row="4" Grid.Column="0" Height="30" Width="60"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Height="30" x:Name="agebox"/>
             </Grid>
         </TabItem>
         <TabItem Header="Family" >
@@ -71,12 +71,13 @@
                 <ListView x:Name="relationshipListView" Margin="10">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Person 1" DisplayMemberBinding="{Binding Person1.FullName}" Width="150"/>
-                            <GridViewColumn Header="Person 2" DisplayMemberBinding="{Binding Person2.FullName}" Width="150"/>
-                            <GridViewColumn Header="Condition" Width="200">
+                            <GridViewColumn Header="Person 2" DisplayMemberBinding="{Binding Person2.FullName}" Width="auto"/>
+                            <GridViewColumn Header="Condition" DisplayMemberBinding="{Binding Condition}" Width="auto">
                             </GridViewColumn>
-                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="350"/>
-                        </GridView>
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="auto"/>
+                            <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Person2.Age}" Width="auto"/>
+
+                            </GridView>
                     </ListView.View>
                 </ListView>
             </Grid>

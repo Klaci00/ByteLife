@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ByteLife2
 {
-    public class Person
+    public class Person : INotifyPropertyChanged
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -89,6 +90,13 @@ namespace ByteLife2
                 siblings.Add(sibling);
             }
             return siblings;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 
