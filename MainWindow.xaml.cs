@@ -30,9 +30,7 @@ namespace ByteLife2
         {
             countrybox.Text = _player.Country.Name;
             agebox.Text = _player.Age.ToString();
-            namebox.Text = _player.FirstName + " " + _player.LastName;
-            Render.RenderPlayer(_player);
-
+            namebox.Text = _player.FullName;
             PersonDynamics.FamilyMaker(_player);
             relationshipListView.ItemsSource = _player.Relationships;
         }
@@ -42,7 +40,11 @@ namespace ByteLife2
             Flow.Cycle(Render.peoplePool);
             foreach(Person person in Render.peoplePool)
             {
-                News.NewsAdder($"{person.FullName}, age: {person.Age}");
+                News.NewsAdder($"{person.FullName}, age: {person.Age}" +
+                    $"agegroup: {person.AgeGroup}, money: {person.Money}," +
+                    $"fitness: {person.Fitness}, hapinness: {person.Happiness}," +
+                    $"health: {person.Health}, intelligence: {person.Intelligence}," +
+                    $"looks: {person.Looks}");
             }
             Refresh();
             relationshipListView.Items.Refresh();
@@ -87,6 +89,7 @@ namespace ByteLife2
             namebox.Text = player.FullName;
             relationshipListView.ItemsSource = player.Relationships;
             mainText.Text = News.NewsWriter;
+            Render.RenderPlayer(player);
             _player = player;
         }
         private void MainText_TextChanged(object sender, TextChangedEventArgs e)

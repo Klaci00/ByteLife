@@ -17,12 +17,17 @@ namespace ByteLife2
         }
         public static void RenderPlayer(Person player)
         {
-            Random random = new Random();
-            player.Health = random.Next(50,101);
+            Random random = new();
+            player.Health = random.Next(50, 101);
             player.Fitness = random.Next(0, 101);
             player.Intelligence = random.Next(0, 101);
             player.Happiness = random.Next(70, 101);
             player.Looks = random.Next(0, 101);
+            player.OnPropertyChanged(nameof(player.Health));
+            player.OnPropertyChanged(nameof(player.Fitness));
+            player.OnPropertyChanged(nameof(player.Intelligence));
+            player.OnPropertyChanged(nameof(player.Happiness));
+            player.OnPropertyChanged(nameof(player.Looks));
         }
     }
 
