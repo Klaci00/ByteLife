@@ -31,7 +31,7 @@ namespace ByteLife2
             countrybox.Text = _player.Country.Name;
             agebox.Text = _player.Age.ToString();
             namebox.Text = _player.FirstName + " " + _player.LastName;
-
+            Render.RenderPlayer(_player);
 
             PersonDynamics.FamilyMaker(_player);
             relationshipListView.ItemsSource = _player.Relationships;
