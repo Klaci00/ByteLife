@@ -49,12 +49,7 @@ namespace ByteLife2
             Refresh();
             relationshipListView.Items.Refresh();
         }
-
-        private void CreatePeople(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+             
         private void firstnameInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateInputs();
