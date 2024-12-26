@@ -11,6 +11,7 @@ namespace ByteLife2
         public static void Cycle(List<Person> people)
         {
             PersonalFlow.PersonalCycle(people);
+            MoneyFlow.MoneyCycle(people);
         }
     }
 }

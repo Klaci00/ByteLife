@@ -1,31 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace ByteLife2
 {
-    public class Person : INotifyPropertyChanged
+    public class Person(string firstname, string lastname, Country country, int age, bool female, List<Relationship> relationships) : INotifyPropertyChanged
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FirstName { get; set; } = firstname;
+        public string LastName { get; set; } = lastname;
         public string FullName => $"{FirstName} {LastName}";
-        public Country Country { get; set; }
-        public int Age { get; set; }
-        public bool Female { get; set; }
-        public List<Relationship> Relationships { get; set; }
-        public static Person MainCharacter { get; set; }
-        public Person(string firstname, string lastname, Country country, int age, bool female, List<Relationship> relationships)
+        public Country Country { get; set; } = country;
+        public int Age { get; set; } = age;
+        public int Health { get; set; } = 100;
+        public int Happiness { get; set; } = 100;
+        public int Looks { get; set; } = 0;
+        public int Intelligence { get; set; } = 0;
+        public int Fitness { get; set; } = 0;
+        public string AgeGroup
         {
-            FirstName = firstname;
-            LastName = lastname;
-            Country = country;
-            Age = age;
-            Female = female;
-            Relationships = relationships ?? new List<Relationship>();
+            get
+            {
+                if (Age < 2)
+                {
+                    return "Infant";
+                }
+                else if (Age < 6)
+                {
+                    return "Child";
+                }
+                else if (Age < 14)
+                {
+                    return "Elementary";
+                }
+                else if (Age < 18)
+                {
+                    return "HigSchooler";
+                }
+                else if (Age < 65)
+                {
+                    return "Adult";
+                }
+                else
+                {
+                    return "Senior";
+                }
+            }
         }
+        public bool Female { get; set; } = female;
+
+        public int Salary { get; set; } = 0;
+        public int Money { get; set; } = 0;
+        public List<Relationship> Relationships { get; set; } = relationships ?? new List<Relationship>();
+        public static Person? MainCharacter { get; set; }
 
         public static readonly List<string> FemaleFirstNames = ["Hanna", "Léna", "Zoé", "Anna", "Luca", "Emma", "Olívia", "Boglárka", "Lili", "Mira", "Laura", "Lara", "Sára", "Zsófia", "Alíz", "Izabella", "Lilien", "Kamilla", "Gréta", "Flóra", "Janka", "Jázmin", "Szofia", "Nóra", "Adél", "Maja", "Liza", "Lilla", "Bella", "Linett", "Zselyke", "Dorka", "Liliána", "Fanni", "Csenge", "Blanka", "Rebeka", "Natasa", "Panna", "Viktória", "Dorina", "Dóra", "Noémi", "Nara", "Emília", "Róza", "Bianka", "Réka", "Elizabet", "Szofi", "Petra", "Szófia", "Abigél", "Milla", "Júlia", "Eszter", "Lotti", "Mia", "Szonja", "Elena", "Norina", "Vivien", "Lia", "Panka", "Zorka", "Eliza", "Amira", "Natália", "Hanga", "Boróka", "Emili", "Johanna", "Odett", "Zejnep", "Nazira", "Hédi", "Lujza", "Bíborka", "Fruzsina", "Diána", "Tamara", "Zora", "Nina", "Lora", "Alina", "Lana", "Mirella", "Regina", "Elina", "Letícia", "Borbála", "Emese", "Zita", "Kincső", "Kiara", "Dorottya", "Mirabella", "Alexandra", "Vanda", "Annabella"];
 
