@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ByteLife2
+﻿namespace ByteLife2
 {
     internal class PersonDynamics
     {
@@ -38,7 +32,18 @@ namespace ByteLife2
                 }
             }
         }
-
-
+        public static string MainActivityChooser(Person player)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>
+            {
+                { "Infant", "" },
+                { "Child", "" },
+                { "Elementary", "School" },
+                { "HighSchooler", "Highschool" },
+                { "Adult", "University" },
+                { "Senior", "University" }
+            };
+            return player.Employed ? "Work":dic[player.AgeGroup];
+        }
     }
 }
