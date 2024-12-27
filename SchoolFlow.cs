@@ -8,12 +8,12 @@ namespace ByteLife2
 {
     internal class SchoolFlow
     {
-        public static List<Person> CreateClass()
+        public static void Enroll(Person player,School school)
         {
-            List<Person> class = new List<Person>();
-            for (int i = 0; i < 10; i++)
+            if (player.School!=null && player.School.Description == school.Description)
             {
-                people.Add(new Person());
+                school.Year= player.School.Year;
+                player.School = school;
             }
         }
     }

@@ -50,8 +50,9 @@ namespace ByteLife2
         public int Money { get; set; } = 0;
 
         public bool Employed { get; set; } = false;
+        public School ? School { get; set; }
 
-        public ElementarySchool? ElementarySchool { get; set; }
+        public List<string> Skills { get; set; } = new List<string>();
         public List<Relationship> Relationships { get; set; } = relationships ?? new List<Relationship>();
         public static Person? MainCharacter { get; set; }
 

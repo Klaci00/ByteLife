@@ -96,9 +96,7 @@ namespace ByteLife2
             relationshipListView.ItemsSource = _player.Relationships;
             agebox.Text = _player.Age.ToString();
             mainText.Text = News.NewsWriter;
-            mainActivity.Header = PersonDynamics.MainActivityChooser(_player);
-            MessageBox.Show("Refreshed");
-            
+            mainActivity.Header = PersonDynamics.MainActivityChooser(_player);          
         }
     }
 }
