@@ -44,7 +44,7 @@ namespace ByteLife2
                     $"agegroup: {person.AgeGroup}, money: {person.Money}," +
                     $"fitness: {person.Fitness}, hapinness: {person.Happiness}," +
                     $"health: {person.Health}, intelligence: {person.Intelligence}," +
-                    $"looks: {person.Looks}");
+                    $"looks: {person.Looks}, school: {person.School?.Name}");
             }
             Refresh();
             relationshipListView.Items.Refresh();

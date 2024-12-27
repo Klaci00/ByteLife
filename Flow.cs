@@ -12,6 +12,7 @@ namespace ByteLife2
         {
             PersonalFlow.PersonalCycle(people);
             MoneyFlow.MoneyCycle(people);
+            SchoolFlow.SchoolCycle(people);
         }
     }
 }

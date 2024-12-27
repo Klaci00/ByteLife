@@ -32,7 +32,7 @@ namespace ByteLife2
                 }
                 else if (Age < 18)
                 {
-                    return "HigSchooler";
+                    return "HighSchooler";
                 }
                 else if (Age < 65)
                 {
@@ -50,6 +50,8 @@ namespace ByteLife2
         public int Money { get; set; } = 0;
 
         public bool Employed { get; set; } = false;
+
+        public bool Student { get; set; } = false;
         public School ? School { get; set; }
 
         public List<string> Skills { get; set; } = new List<string>();
