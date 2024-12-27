@@ -65,24 +65,43 @@
                 <TextBlock Grid.Row="4" Grid.Column="1" Height="30" x:Name="agebox"/>
             </Grid>
         </TabItem>
-        <TabItem Header="Family" >
-            <Grid>
-                <ListView x:Name="relationshipListView" Margin="10">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Person 2" DisplayMemberBinding="{Binding Person2.FullName}" Width="auto"/>
-                            <GridViewColumn Header="Condition" DisplayMemberBinding="{Binding Condition}" Width="auto">
-                            </GridViewColumn>
-                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="auto"/>
-                            <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Person2.Age}" Width="auto"/>
+            <TabItem Header="Family" >
+                <Grid>
+                    <ListView x:Name="relationshipListView" Margin="10">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Person 2" DisplayMemberBinding="{Binding Person2.FullName}" Width="auto"/>
+                                <GridViewColumn Header="Condition" DisplayMemberBinding="{Binding Condition}" Width="auto">
+                                </GridViewColumn>
+                                <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="auto"/>
+                                <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Person2.Age}" Width="auto"/>
 
                             </GridView>
-                    </ListView.View>
-                </ListView>
-            </Grid>
-        </TabItem>
-        <TabItem x:Name="mainActivity" Header="Main activity" >
-        </TabItem>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="mainActivity" Header="Main activity" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Study harder" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="studyButton" Content="Study" Grid.Column="1" Grid.Row="0" Height="25" Width="100"></Button>
+                    <TextBlock Text="Prank teacher" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="prankTeacherButton" Content="Prank teacher" Grid.Column="1" Grid.Row="1" Height="25" Width="100"></Button>
+                    <TextBlock Text="Skip school" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="skipSchoolButton" Content="Skip school" Grid.Column="1" Grid.Row="2" Height="25" Width="100"></Button>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

@@ -16,7 +16,7 @@ namespace ByteLife2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Person _player;
+        private Person ? _player;
         public MainWindow()
         {
             InitializeComponent();
@@ -97,6 +97,8 @@ namespace ByteLife2
             agebox.Text = _player.Age.ToString();
             mainText.Text = News.NewsWriter;
             mainActivity.Header = PersonDynamics.MainActivityChooser(_player);
+            MessageBox.Show("Refreshed");
+            
         }
     }
 }
