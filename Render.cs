@@ -23,6 +23,7 @@ namespace ByteLife2
             player.Intelligence = random.Next(0, 101);
             player.Happiness = random.Next(70, 101);
             player.Looks = random.Next(0, 101);
+            player.Player = true;
             player.OnPropertyChanged(nameof(player.Health));
             player.OnPropertyChanged(nameof(player.Fitness));
             player.OnPropertyChanged(nameof(player.Intelligence));

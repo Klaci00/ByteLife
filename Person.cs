@@ -52,6 +52,8 @@ namespace ByteLife2
         public bool Employed { get; set; } = false;
 
         public bool Student { get; set; } = false;
+
+        public bool Player { get; set; } = false;
         public School ? School { get; set; }
 
         public List<string> Skills { get; set; } = new List<string>();

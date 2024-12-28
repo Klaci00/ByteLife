@@ -81,7 +81,7 @@
                     </ListView>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="mainActivity" Header="Main activity" >
+            <TabItem x:Name="elementary" Header="Elementary School" Visibility="Collapsed" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
@@ -100,6 +100,69 @@
                     <Button x:Name="prankTeacherButton" Content="Prank teacher" Grid.Column="1" Grid.Row="1" Height="25" Width="100"></Button>
                     <TextBlock Text="Skip school" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                     <Button x:Name="skipSchoolButton" Content="Skip school" Grid.Column="1" Grid.Row="2" Height="25" Width="100"></Button>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="highSchool" Header="High school" Visibility="Collapsed" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Study harder" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="studyButtonH" Content="Study" Grid.Column="1" Grid.Row="0" Height="25" Width="100"></Button>
+                    <TextBlock Text="Prank teacher" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="prankTeacherButtonH" Content="Prank teacher" Grid.Column="1" Grid.Row="1" Height="25" Width="100"></Button>
+                    <TextBlock Text="Skip school" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="skipSchoolButtonH" Content="Skip school" Grid.Column="1" Grid.Row="2" Height="25" Width="100"></Button>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="university" Header="University" Visibility="Collapsed" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Study harder" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="studyButtonU" Content="Study" Grid.Column="1" Grid.Row="0" Height="25" Width="100"></Button>
+                    <TextBlock Text="Prank teacher" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="prankTeacherButtonU" Content="Prank teacher" Grid.Column="1" Grid.Row="1" Height="25" Width="100"></Button>
+                    <TextBlock Text="Skip school" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="skipSchoolButtonU" Content="Skip school" Grid.Column="1" Grid.Row="2" Height="25" Width="100"></Button>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="work" Header="Work" Visibility="Collapsed">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Study harder" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="studyButtonW" Content="Study" Grid.Column="1" Grid.Row="0" Height="25" Width="100"></Button>
+                    <TextBlock Text="Prank teacher" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="prankTeacherButtonW" Content="Prank teacher" Grid.Column="1" Grid.Row="1" Height="25" Width="100"></Button>
+                    <TextBlock Text="Skip school" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Button x:Name="skipSchoolButtonW" Content="Skip school" Grid.Column="1" Grid.Row="2" Height="25" Width="100"></Button>
                 </Grid>
             </TabItem>
         </TabControl>

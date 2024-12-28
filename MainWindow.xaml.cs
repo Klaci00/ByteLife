@@ -93,10 +93,41 @@ namespace ByteLife2
         }
         private void Refresh()
         {
-            relationshipListView.ItemsSource = _player.Relationships;
-            agebox.Text = _player.Age.ToString();
+            relationshipListView.ItemsSource = _player?.Relationships;
+            agebox.Text = _player?.Age.ToString();
             mainText.Text = News.NewsWriter;
-            mainActivity.Header = PersonDynamics.MainActivityChooser(_player);          
+            TabHandler(_player);
+        }
+        private void TabHandler(Person player)
+        {
+            switch (player.School?.Description)
+            {
+                case "Elementary School":
+                    elementary.Visibility = Visibility.Visible;
+                    break;
+                case "High School":
+                    highSchool.Visibility = Visibility.Visible;
+                    elementary.Visibility = Visibility.Collapsed;
+                    break;
+                case "University":
+                    university.Visibility = Visibility.Visible;
+                    highSchool.Visibility = Visibility.Collapsed;
+                    elementary.Visibility = Visibility.Collapsed;
+                    break;
+                default:
+                    elementary.Visibility = Visibility.Collapsed;
+                    highSchool.Visibility = Visibility.Collapsed;
+                    university.Visibility = Visibility.Collapsed;
+                    break;
+            }
+            if (player.Employed)
+            {
+                work.Visibility = Visibility.Visible;                
+            }
+            else
+            {
+                work.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

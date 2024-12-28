@@ -27,14 +27,14 @@ namespace ByteLife2
             if (player.Student == false && !player.Skills.Contains("Elementary School") && player.Age >= 6 && player.Age < 18)
             {
                 School school = ElementarySchoolMaker(player);
-                MessageBox.Show($"You have been enrolled in {school.Description}!");
+                if (player.Player){ MessageBox.Show($"You have been enrolled in {school.Description}!"); }
                 school.Year = player.School == null ? 0 : player.School.Year;
                 player.School = school;
                 player.Student = true;
             }
             else if (player.Student == false && !player.Skills.Contains("High School") && player.Age >= 14 && player.Age < 18)
             {
-                School school = new HighSchool(0, "High School", 4);
+                School school = HighSchoolMaker(player);
                 school.Year = player.School == null ? 0 : player.School.Year;
                 player.School = school;
                 player.Student = true;
@@ -50,12 +50,23 @@ namespace ByteLife2
         }
         public static ElementarySchool ElementarySchoolMaker(Person player)
         {
-            Random random = new Random();
+            string elementaryName = SchoolnameMaker("Elementary School");
+            return new ElementarySchool(0,elementaryName, 8);
+        }
+
+        public static HighSchool HighSchoolMaker(Person player)
+        {
+            string highschoolName = SchoolnameMaker("High School");
+            return new HighSchool(0, highschoolName, 4);
+        }
+        public static string SchoolnameMaker(string schooltype)
+        {
+            Random random = new();
             string adjecive = School.adjectives[random.Next(0, School.adjectives.Count)];
-            adjecive = adjecive[0].ToString().ToUpper() + adjecive.Substring(1);
+            adjecive = string.Concat(adjecive[0].ToString().ToUpper(), adjecive.AsSpan(1));
             string noun = School.nouns[random.Next(0, School.nouns.Count)];
-            noun = noun[0].ToString().ToUpper() + noun.Substring(1);
-            return new ElementarySchool(0, $"{adjecive} {noun} Elementary School", 8);
+            noun = string.Concat(noun[0].ToString().ToUpper(), noun.AsSpan(1));
+            return $"{adjecive} {noun} {schooltype}";
         }
         public static void Complete(Person player)
         {
