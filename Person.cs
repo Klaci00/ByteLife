@@ -58,6 +58,8 @@ namespace ByteLife2
 
         public List<string> Skills { get; set; } = new List<string>();
         public List<Relationship> Relationships { get; set; } = relationships ?? new List<Relationship>();
+
+        public List<Activity> Activities { get; set; } = new List<Activity>();
         public static Person? MainCharacter { get; set; }
 
         public static readonly List<string> FemaleFirstNames = ["Hanna", "Léna", "Zoé", "Anna", "Luca", "Emma", "Olívia", "Boglárka", "Lili", "Mira", "Laura", "Lara", "Sára", "Zsófia", "Alíz", "Izabella", "Lilien", "Kamilla", "Gréta", "Flóra", "Janka", "Jázmin", "Szofia", "Nóra", "Adél", "Maja", "Liza", "Lilla", "Bella", "Linett", "Zselyke", "Dorka", "Liliána", "Fanni", "Csenge", "Blanka", "Rebeka", "Natasa", "Panna", "Viktória", "Dorina", "Dóra", "Noémi", "Nara", "Emília", "Róza", "Bianka", "Réka", "Elizabet", "Szofi", "Petra", "Szófia", "Abigél", "Milla", "Júlia", "Eszter", "Lotti", "Mia", "Szonja", "Elena", "Norina", "Vivien", "Lia", "Panka", "Zorka", "Eliza", "Amira", "Natália", "Hanga", "Boróka", "Emili", "Johanna", "Odett", "Zejnep", "Nazira", "Hédi", "Lujza", "Bíborka", "Fruzsina", "Diána", "Tamara", "Zora", "Nina", "Lora", "Alina", "Lana", "Mirella", "Regina", "Elina", "Letícia", "Borbála", "Emese", "Zita", "Kincső", "Kiara", "Dorottya", "Mirabella", "Alexandra", "Vanda", "Annabella"];
