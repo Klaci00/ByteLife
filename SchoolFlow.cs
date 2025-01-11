@@ -1,33 +1,39 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace ByteLife2
 {
     internal class SchoolFlow
     {
-        public static void SchoolCycle(List<Person> people)
+        public static void SchoolCycle(List<Person> people,TabControl tabControl)
         {
             foreach (Person person in people)
             {
-                if(person.School != null)
+                if (person.School != null)
                 {
                     if (person.School.Year == person.School.YearstoComplete)
                     {
-                        Complete(person);
+                        Complete(person,tabControl);
                     }
                     else
                     {
                         person.School.Year += 1;
                     }
                 }
-                ObligatoryEnrollment(person);
+                ObligatoryEnrollment(person,tabControl);
+
             }
         }
-        public static void ObligatoryEnrollment(Person player)
+        public static void ObligatoryEnrollment(Person player,TabControl tabControl)
         {
             if (player.Student == false && !player.Skills.Contains("Elementary School") && player.Age >= 6 && player.Age < 18)
             {
                 School school = ElementarySchoolMaker(player);
-                if (player.Player){ MessageBox.Show($"You have been enrolled in {school.Description}!"); }
+                if (player.Player)
+                {
+                    player.Activities.Add(school);
+                    Activity.TabAdder(school, tabControl);
+                }
                 school.Year = player.School == null ? 0 : player.School.Year;
                 player.School = school;
                 player.Student = true;
@@ -35,6 +41,12 @@ namespace ByteLife2
             else if (player.Student == false && !player.Skills.Contains("High School") && player.Age >= 14 && player.Age < 18)
             {
                 School school = HighSchoolMaker(player);
+                if (player.Player)
+                {
+                    player.Activities.Add(school);
+                    Activity.TabAdder(school, tabControl);
+
+                }
                 school.Year = player.School == null ? 0 : player.School.Year;
                 player.School = school;
                 player.Student = true;
@@ -51,7 +63,7 @@ namespace ByteLife2
         public static ElementarySchool ElementarySchoolMaker(Person player)
         {
             string elementaryName = SchoolnameMaker("Elementary School");
-            return new ElementarySchool(0,elementaryName, 8);
+            return new ElementarySchool(0, elementaryName, 8);
         }
 
         public static HighSchool HighSchoolMaker(Person player)
@@ -68,7 +80,7 @@ namespace ByteLife2
             noun = string.Concat(noun[0].ToString().ToUpper(), noun.AsSpan(1));
             return $"{adjecive} {noun} {schooltype}";
         }
-        public static void Complete(Person player)
+        public static void Complete(Person player, TabControl tabControl)
         {
             if (player.School?.Description == null)
             {
@@ -76,7 +88,9 @@ namespace ByteLife2
             }
             else
             {
+                player.Activities.Remove(player.School);
                 player.Skills.Add(player.School.Description);
+                Activity.TabRemover(player.School, tabControl);
                 player.Student = false;
                 player.School = null;
             }

@@ -37,7 +37,7 @@ namespace ByteLife2
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            Flow.Cycle(Render.peoplePool);
+            Flow.Cycle(Render.peoplePool,tabcontr,_player);
             foreach(Person person in Render.peoplePool)
             {
                 News.NewsAdder($"{person.FullName}, age: {person.Age}" +
@@ -97,9 +97,7 @@ namespace ByteLife2
             agebox.Text = _player?.Age.ToString();
             mainText.Text = News.NewsWriter;
             TabHandler(_player);
-            Work work = new(0,"Work",400000,50,40);
-            _player.Activities.Add(work);
-            Activity.TabMaker(_player,tabcontr);
+            tabcontr.Items.Refresh();
         }
         private void TabHandler(Person player)
         {
