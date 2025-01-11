@@ -18,14 +18,5 @@ namespace ByteLife2
                 }
             }
         }
-        public static void NextYear(Activity activity)
-        {
-            activity.Year += 1;
-        }
-
-        public static void ActivityAdder(Person player, Activity activity)
-        {
-            player.Activities.Add(activity);
-        }
     }
 }

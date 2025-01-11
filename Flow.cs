@@ -12,10 +12,10 @@ namespace ByteLife2
         public static void Cycle(List<Person> people,TabControl tabControl,Person player)
         {
             PersonalFlow.PersonalCycle(people);
-            Activity.TabMaker(player, tabControl);
             ActivityFlow.ActivityCycle(people);
             MoneyFlow.MoneyCycle(people);
             SchoolFlow.SchoolCycle(people,tabControl);
+            Activity.TabUpdater(player, tabControl);
         }
     }
 }
