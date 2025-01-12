@@ -27,7 +27,7 @@ namespace ByteLife2
         {
             Random random = new();
             int next = random.Next(0, 10);
-            string name=next>=7?$"A {WordBank.RandomArchetype}"(): otherPerson.FullName;
+            string name=next>=7?$"A {WordBank.RandomArchetype()}": otherPerson.FullName;
             string exposition = $"{name}";
         }
     }
