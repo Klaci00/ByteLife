@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ByteLife2"
         mc:Ignorable="d"
+        x:Name="MainWindow01"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid x:Name="createPlayer" Visibility="Hidden" Panel.ZIndex="1" >
@@ -55,7 +56,10 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox TextWrapping="Wrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Height="Auto" x:Name="mainText" Width="Auto" TextChanged="MainText_TextChanged"/>
+                    <Popup x:Name="RandomEventPopup" Placement="Center" StaysOpen="True">
+                        <!-- Placeholder for the Grid content -->
+                    </Popup>
+                    <TextBox TextWrapping="Wrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Height="Auto" x:Name="mainText" Width="Auto" TextChanged="MainText_TextChanged"/>
                 <Button Content="Play" Grid.Row="1" Height="30" Width="100" x:Name="play" Click="Play_Click" HorizontalAlignment="Left"/>
                 <Label Content="Name:" Grid.Row="2" Grid.Column="2" Height="30" Width="60"/>
                 <TextBlock Grid.Row="2" Grid.Column="3" Height="30" x:Name="namebox"/>

@@ -9,7 +9,7 @@ namespace ByteLife2
 {
     public class CountryDinamics
     {
-        static private Random random = new Random();
+        private static readonly Random random = new();
 
         private static Country Beligerent()
         {

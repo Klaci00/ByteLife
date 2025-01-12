@@ -33,11 +33,12 @@ namespace ByteLife2
             namebox.Text = _player.FullName;
             PersonDynamics.FamilyMaker(_player);
             relationshipListView.ItemsSource = _player.Relationships;
+            
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            Flow.Cycle(Render.peoplePool,tabcontr,_player);
+            Flow.Cycle(Render.peoplePool,tabcontr,_player,RandomEventPopup);
             foreach(Person person in Render.peoplePool)
             {
                 News.NewsAdder($"{person.FullName}, age: {person.Age}" +
