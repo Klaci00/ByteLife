@@ -56,7 +56,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                    <Popup x:Name="RandomEventPopup" Placement="Center" StaysOpen="True">
+                    <Popup x:Name="MainPopup" Placement="Center" StaysOpen="True">
                         <!-- Placeholder for the Grid content -->
                     </Popup>
                     <TextBox TextWrapping="Wrap" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Height="Auto" x:Name="mainText" Width="Auto" TextChanged="MainText_TextChanged"/>

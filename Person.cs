@@ -14,6 +14,8 @@ namespace ByteLife2
         public int Looks { get; set; } = 0;
         public int Intelligence { get; set; } = 0;
         public int Fitness { get; set; } = 0;
+
+        public int Strength { get; set; } = 10;
         public string AgeGroup
         {
             get

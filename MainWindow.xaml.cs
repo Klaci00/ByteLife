@@ -38,7 +38,7 @@ namespace ByteLife2
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            Flow.Cycle(Render.peoplePool,tabcontr,_player,RandomEventPopup);
+            Flow.Cycle(Render.peoplePool,tabcontr,_player,MainPopup);
             foreach(Person person in Render.peoplePool)
             {
                 News.NewsAdder($"{person.FullName}, age: {person.Age}" +

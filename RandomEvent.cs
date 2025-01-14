@@ -12,8 +12,9 @@ namespace ByteLife2
 {
     public class RandomEvent
     {
-        public static Grid RandomEventGridMaker(Person player, Person? otherPerson)
+        public static Grid RandomEventGridMaker(Person player, Person otherPerson)
         {
+            PopupContents.PopupContent popupContent = PopupContents.Template01(player, otherPerson);
             Grid grid1 = new() { AllowDrop = true, Width = 600, Height = 420, Background = Brushes.White };
             grid1.RowDefinitions.Add(new RowDefinition());
             grid1.RowDefinitions.Add(new RowDefinition());
@@ -22,7 +23,14 @@ namespace ByteLife2
             TextBlock exposition = new() { Text = ExpositionText(otherPerson), Margin = new(5) };
             Grid.SetRow(exposition, 0);
             grid1.Children.Add(exposition);
-
+            for (int i = 0; i < popupContent.PopupButtons.Count; i++)
+            {
+                Button button=new Button();
+                button.Content = $"{popupContent.PopupButtons[i].ButtonText}, {i}, {popupContent.PopupButtons.Count}";
+                button.Click += (sender, e) => popupContent.PopupButtons[0].Action();
+                Grid.SetRow(button, i+1); 
+                grid1.Children.Add((Button)button);
+            }          
             return grid1;
         }
         private static string ExpositionText(Person? otherPerson=null)

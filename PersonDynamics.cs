@@ -1,4 +1,6 @@
-﻿namespace ByteLife2
+﻿using System.Windows;
+
+namespace ByteLife2
 {
     internal class PersonDynamics
     {
@@ -44,6 +46,16 @@
                 { "Senior", "University" }
             };
             return player.Employed ? "Work":dic[player.AgeGroup];
+        }
+
+        public static void Attack(Person player,Person attacker)
+        {
+            player.Health-=SmallDamage(attacker);
+            MessageBox.Show(Convert.ToString(player.Health));
+        }
+        private static int SmallDamage(Person attacker)
+        {
+            return attacker.Strength / 3;
         }
     }
 }
