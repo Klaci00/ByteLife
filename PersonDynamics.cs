@@ -53,6 +53,12 @@ namespace ByteLife2
             player.Health-=SmallDamage(attacker);
             MessageBox.Show(Convert.ToString(player.Health));
         }
+
+        public static void Heal(Person player)
+        {
+            player.Health = 100;
+            MessageBox.Show($"Health: {player.Health}");
+        }
         private static int SmallDamage(Person attacker)
         {
             return attacker.Strength / 3;

@@ -25,12 +25,13 @@ namespace ByteLife2
             grid1.Children.Add(exposition);
             for (int i = 0; i < popupContent.PopupButtons.Count; i++)
             {
-                Button button=new Button();
+                Button button = new Button();
                 button.Content = $"{popupContent.PopupButtons[i].ButtonText}, {i}, {popupContent.PopupButtons.Count}";
-                button.Click += (sender, e) => popupContent.PopupButtons[0].Action();
-                Grid.SetRow(button, i+1); 
-                grid1.Children.Add((Button)button);
-            }          
+                int index = i; // Capture the current value of i
+                button.Click += (sender, e) => popupContent.PopupButtons[index].Action();
+                Grid.SetRow(button, i + 1);
+                grid1.Children.Add(button);
+            }
             return grid1;
         }
         private static string ExpositionText(Person? otherPerson=null)

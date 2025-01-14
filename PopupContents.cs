@@ -35,12 +35,23 @@ namespace ByteLife2
             }
             return action;
         }
+
+        private static Action ACTIONHeal(Person player)
+        {
+            void action()
+            {
+                PersonDynamics.Heal(player);
+            }
+            return action;
+        }
         public static PopupContent Template01(Person player, Person otherPerson)
         {
             {
                 Action attackAction = ACTIONAttack(player, attacker: otherPerson);
+                Action healAction = ACTIONHeal(player);
                 PopupButton attack = new(buttonText: "Attack them!", action: attackAction, player, otherPerson);
-                List<PopupButton> popupButtons = [attack];
+                PopupButton heal = new(buttonText:"Heal me!",healAction,player,otherPerson);
+                List<PopupButton> popupButtons = [attack,heal];
                 PopupContent popupContent = new(popupButtons, popupText: "sadas");
                 return popupContent;
 
