@@ -25,7 +25,7 @@ namespace ByteLife2
 
         public static void RandomEventPopupMaker(Popup popup,Person player,Person otherperson)
         {
-            Grid grid = RandomEvent.RandomEventGridMaker(player, otherperson);
+            Grid grid = RandomEvent.RandomEventGridMaker(player, otherperson,popup);
 
             // Set the grid as the child of the popup
             popup.Child = grid;
