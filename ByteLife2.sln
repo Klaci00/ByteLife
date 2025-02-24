@@ -5,6 +5,20 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteLife2", "ByteLife2.csproj", "{51E7B9DD-8A69-43F6-B28E-85D99F6E9A49}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Event", "Event", "{03BB0DE0-0C40-4416-9C4B-6D11117F6986}"
+	ProjectSection(SolutionItems) = preProject
+		EventControl.cs = EventControl.cs
+		PopupButton.cs = PopupButton.cs
+		PopupContents.cs = PopupContents.cs
+		RandomEvent.cs = RandomEvent.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Work", "Work", "{765CA99A-2B8D-48FE-9499-C747339B19C7}"
+	ProjectSection(SolutionItems) = preProject
+		Job.cs = Job.cs
+		Work.cs = Work.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

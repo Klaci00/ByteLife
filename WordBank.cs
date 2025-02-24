@@ -68,7 +68,11 @@ namespace ByteLife2
         };
 
         private static readonly List<List<string>> PeopleLists = new List<List<string>> { Professionals, Derogatory, Other, Criminals };
-
+        /// <summary>
+        /// Generates a random archetype string
+        /// from a list of professional, derogatory, other, and criminal archetypes.
+        /// </summary>
+        /// <returns>string</returns>
         public static string RandomArchetype()
         {
             Random random = new();
@@ -78,12 +82,20 @@ namespace ByteLife2
             string archetype = randomList[randomIndex];
             return archetype;
         }
+        /// <summary>
+        /// Generates a random insult in gerund form.
+        /// </summary>
+        /// <returns>string</returns>
         public static string RandomInsulteGerund()
         {
             Random random = new Random();
             int next = random.Next(0, InsultsGerund.Count);
             return InsultsGerund[next];
         }
+        /// <summary>
+        /// Generates a random location string.
+        /// </summary>
+        ///<returns>string</returns>
         public static string RandomLocation()
         {
             Random random = new Random();

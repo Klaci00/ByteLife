@@ -8,88 +8,61 @@ using System.Windows.Controls.Primitives;
 
 namespace ByteLife2
 {
-    internal class PopupContents
+    internal class PopupContent(List<PopupButton> popupButtons, string expositionText)
     {
-        public struct PopupButton(string buttonText, Action action, Person player, Person? otherPerson)
-        {
-            public string ButtonText { get; } = buttonText;
-            public Action Action { get; } = action;
-
-            public Person Player { get; set; } = player;
-            public Person OtherPerson { get; set; } = otherPerson;
-        }
+        
 
 
-        public struct PopupContent
+        /// <summary>
+        /// Generates a random exposition text for a random event.
+        /// </summary>
+        /// <param name="otherPerson">A Person object which may be null.</param>
+        /// <returns>string</returns>
+        /// <example><code>string text = ExpositionText(Person? otherPerson);</code></example>
+        private static string ExpositionText(Person? otherPerson = null)
         {
-            public PopupContent(List<PopupButton> popupButtons)
-            {
-                PopupButtons = popupButtons;
-            }
-            public List<PopupButton> PopupButtons { get; }
+            Random random = new();
+            int next = random.Next(0, 10);
+
+            string name = otherPerson == null ? WordBank.RandomArchetype() : (next >= 7 ? $"A {WordBank.RandomArchetype()}" : otherPerson.FullName);
+
+            string action = WordBank.RandomInsulteGerund();
+            string location = WordBank.RandomLocation();
+            string exposition = $"{name} is {action} you {location}";
+            return exposition;
         }
 
-        private static Action ACTIONAttack(Person player, Person attacker,Popup popup)
+        private static PopupButton AttackButton(Person player, Person attacker, Popup popup)
         {
-            void action()
-            {
-                PersonDynamics.Attack(player, attacker);
-                popup.IsOpen = false;
-            }
-            return action;
+            Action attackAction = ACTIONAttack(player, attacker, popup);
+            IPopupButton button = new(buttonText: $"Attack {attacker.FirstName}!", action: attackAction, player, attacker);
+            return new(buttonText: $"Attack {attacker.FirstName}!", action: attackAction, player, attacker);
         }
+        
 
-        private static Action ACTIONHeal(Person player,Popup popup)
+
+    private static readonly List<Action<Person, Popup>> JobInterviewAnswersActions =
+    [
+        (person, popup) =>
         {
-            void action()
-            {
-                PersonDynamics.Heal(player);
-                popup.IsOpen = false;
-            }
-            return action;
+            AJobIntervBadAnswer(person, popup);
+            AJobIntervBestAnswer(person, popup);
+            AJobIntervGoodAnswer(person, popup);
+            AJobIntervPoorAnswer(person, popup);
         }
-        private static Action AJobIntervGoodAnswer(Person player, Popup popup)
-        {
-            void action()
-            {
-                popup.IsOpen = false;
-            }
-            return action;
-        }
-        private static Action AJobIntervBadAnswer(Person player, Popup popup)
-        {
-            void action()
-            {
-                popup.IsOpen = false;
-            }
-            return action;
-        }
-        private static Action AJobIntervBestAnswer(Person player, Popup popup)
-        {
-            void action()
-            {
-                popup.IsOpen = false;
-            }
-            return action;
-        }
-        private static Action AJobIntervPoorAnswer(Person player, Popup popup)
-        {
-            void action()
-            {
-                popup.IsOpen = false;
-            }
-            return action;
-        }
+    ];
         public static PopupContent RandomEventTemplate01(Person player, Person otherPerson, Popup popup)
         {
-            
-                Action attackAction = ACTIONAttack(player, attacker: otherPerson,popup);
-                Action healAction = ACTIONHeal(player,popup);
+
+            Action attackAction = () => Actions.actionList[0](player, otherPerson, popup);
+            Action healAction = ACTIONHeal(player,popup);
                 PopupButton attack = new(buttonText: "Attack them!", action: attackAction, player, otherPerson);
                 PopupButton heal = new(buttonText:"Heal me!",healAction,player,otherPerson);
                 PopupButton blabla = new(buttonText: "blabla", action:attackAction, player, otherPerson);
                 List<PopupButton> popupButtons = [attack,heal,blabla];
-                PopupContent popupContent = new(popupButtons);
+                string expositionText = ExpositionText(otherPerson);
+                PopupContent popupContent = new() {PopupButtons= popupButtons, ExpositionText= expositionText };
+                Action attack = ACTIONAttack[0].Invoke();
                 return popupContent;
 
             
@@ -98,6 +71,7 @@ namespace ByteLife2
 
         public static PopupContent JobinterViewTemplate01(Person player, Popup popup)
         {
+            JobInterviewAnswersActions[0](player, popup);
             Action goodAnswer = AJobIntervGoodAnswer(player, popup);
             Action badAnswer = AJobIntervBadAnswer(player, popup);
             Action bestAnswer = AJobIntervBestAnswer(player, popup);
@@ -120,5 +94,16 @@ namespace ByteLife2
                 grid.Children.Add(button);
             }
         }
+        public static PopupContent PopupContentGetter(int index,Person player, Popup popup, Person? otherPerson=null)
+        {
+            switch (index)
+            {
+                case 0:
+                    return RandomEventTemplate01(player,otherPerson,popup);
+                case 1:
+                    return JobinterViewTemplate01(player,popup);
+                default:
+                    return RandomEventTemplate01(player, otherPerson, popup);
+            }
     }
 }

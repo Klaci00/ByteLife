@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ByteLife2
-{
+{/// <summary>
+/// Represents the flow of activities in the game.
+/// </summary>
     public class ActivityFlow
     {
         public static void ActivityCycle(List<Person> people)
