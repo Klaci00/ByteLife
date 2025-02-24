@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media.Animation;
 
 namespace ByteLife2
 {
@@ -31,5 +34,12 @@ namespace ByteLife2
         /// The other participant in the event, Person object.
         /// </summary>
         public Person? OtherPerson { get; set; } = otherPerson;
+
+        public static PopupButton AttackButton(Person player, Person attacker, Popup popup)
+        {
+            Action attackAction = () => Actions.actionList[0](player,popup,attacker);
+            PopupButton button = new(buttonText: $"Attack {attacker.FirstName}!", action: attackAction, player, attacker);
+            return new(buttonText: $"Attack {attacker.FirstName}!", action: attackAction, player, attacker);
+        }
     }
 }

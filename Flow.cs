@@ -20,19 +20,8 @@ namespace ByteLife2
             Activity.TabUpdater(player, tabControl);
             Random random = new Random();
             Person person = people[random.Next(people.Count)];
-            RandomEventPopupMaker(popup,player,person);
+            EventControl.EventPopupMaker(person,people, popup,0);
         }
 
-        public static void RandomEventPopupMaker(Popup popup,Person player,Person otherperson)
-        {
-            Grid grid = RandomEvent.RandomEventGridMaker(player, otherperson,popup);
-
-            // Set the grid as the child of the popup
-            popup.Child = grid;
-            popup.Placement = PlacementMode.Center;
-            popup.HorizontalOffset = 0;
-            popup.VerticalOffset = 0;
-            popup.IsOpen = true;
-        }
     }
 }

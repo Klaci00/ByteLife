@@ -13,7 +13,10 @@ namespace ByteLife2
         public static readonly List<Action<Person, Popup, Person?>> actionList =
         [
             (player, popup, attacker) => {
-                attacker = attacker ??  player; MessageBox.Show("ATTACKER IS NULL!!");
+                if (attacker == null){
+                    attacker = attacker ??  player;
+                    MessageBox.Show("ATTACKER IS NULL!!");
+                }
                 ACTIONAttack(player,popup, attacker);
                 ACTIONHeal(player, popup);
                 AJobIntervGoodAnswer(player, popup);
@@ -23,6 +26,15 @@ namespace ByteLife2
 
             },
         ];
+        public static Dictionary<string,Action<Person,Popup,Person?>> actionDict = new()
+        {
+            ["Attack"] = (player, popup, attacker) => ACTIONAttack(player, popup, attacker),
+            ["Heal"] = (player, popup, attacker) => ACTIONHeal(player, popup),
+            ["Good Answer"] = (player, popup, attacker) => AJobIntervGoodAnswer(player, popup),
+            ["Bad Answer"] = (player, popup, attacker) => AJobIntervBadAnswer(player, popup),
+            ["Best Answer"] = (player, popup, attacker) => AJobIntervBestAnswer(player, popup),
+            ["Poor Answer"] = (player, popup, attacker) => AJobIntervPoorAnswer(player, popup),
+        };
         private static Action ACTIONAttack(Person player,  Popup popup, Person attacker)
         {
             void action()

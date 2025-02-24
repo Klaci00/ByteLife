@@ -45,12 +45,12 @@ namespace ByteLife2
                 { "Adult", "University" },
                 { "Senior", "University" }
             };
-            return player.Employed ? "Work":dic[player.AgeGroup];
+            return player.Employed ? "Work" : dic[player.AgeGroup];
         }
 
-        public static void Attack(Person player,Person attacker)
+        public static void Attack(Person player, Person attacker)
         {
-            player.Health-=SmallDamage(attacker);
+            player.Health -= SmallDamage(attacker);
             MessageBox.Show(Convert.ToString(player.Health));
         }
 
@@ -62,6 +62,12 @@ namespace ByteLife2
         private static int SmallDamage(Person attacker)
         {
             return attacker.Strength / 3;
+        }
+
+        public static Person RandomPerson(List<Person> people)
+        {
+            Random random = new Random();
+            return people[random.Next(0, people.Count)];
         }
     }
 }
