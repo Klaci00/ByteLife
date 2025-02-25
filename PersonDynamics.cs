@@ -10,7 +10,7 @@ namespace ByteLife2
 
         }
 
-        public static void FamilyMaker(Person player)
+        public static void FamilyMaker(Player player)
         {
             Random Random = new Random();
             int fatherAge = Random.Next(18, 45);

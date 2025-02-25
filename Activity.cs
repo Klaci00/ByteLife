@@ -55,5 +55,39 @@ namespace ByteLife2
             }
             
         }
+
+        private static Grid TabContent(Person player,Activity activity)
+        {
+            Grid grid = new Grid();
+
+            return grid;
+
+        }
+
+        private static Grid SchoolGrid()
+        {
+            Grid grid = new Grid();
+            ColumnDefinition columnDefinition0 = new()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            };
+            ColumnDefinition columnDefinition1 = new()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            };
+            grid.ColumnDefinitions.Add(columnDefinition0);
+            grid.ColumnDefinitions.Add(columnDefinition1);
+            for(int i = 0; i < 5; i++)
+            {
+                RowDefinition rowDefinition = new()
+                {
+                    Height = new GridLength(1, GridUnitType.Star)
+                };
+                grid.RowDefinitions.Add(rowDefinition);
+            }
+
+            return grid;
+
+        }
     }
 }

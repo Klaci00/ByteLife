@@ -40,6 +40,7 @@ namespace ByteLife2
             void action()
             {
                 PersonDynamics.Attack(player, attacker);
+                MessageBox.Show("Attack succesful!");
                 popup.IsOpen = false;
             }
             return action;

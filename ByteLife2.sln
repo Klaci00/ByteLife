@@ -19,6 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Work", "Work", "{765CA99A-2
 		Work.cs = Work.cs
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Person", "Person", "{4E79096E-CF01-4E24-8B0D-41E133070D54}"
+	ProjectSection(SolutionItems) = preProject
+		Person.cs = Person.cs
+		PersonalFlow.cs = PersonalFlow.cs
+		PersonDynamics.cs = PersonDynamics.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

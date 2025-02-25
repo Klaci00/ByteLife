@@ -33,8 +33,9 @@ namespace ByteLife2
         {
 
             void attackAction() => Actions.actionDict["Attack"](player, popup, otherPerson);
+            void attack2() => Actions.actionList[0](player, popup, otherPerson);
             void healAction() => Actions.actionDict["Heal"](player, popup, otherPerson);
-            PopupButton attack = new(buttonText: "Attack them!", action: attackAction, player, otherPerson);
+            PopupButton attack = new(buttonText: "Attack them!", action: attack2, player, otherPerson);
             PopupButton heal = new(buttonText: "Heal me!", healAction, player, otherPerson);
             PopupButton blabla = new(buttonText: "blabla", action: attackAction, player, otherPerson);
             List<PopupButton> popupButtons = [attack, heal, blabla];

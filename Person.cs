@@ -2,20 +2,62 @@
 
 namespace ByteLife2
 {
-    public class Person(string firstname, string lastname, Country country, int age, bool female, List<Relationship> relationships) : INotifyPropertyChanged
+    public abstract class Person() : INotifyPropertyChanged
     {
-        public string FirstName { get; set; } = firstname;
-        public string LastName { get; set; } = lastname;
-        public string FullName => $"{FirstName} {LastName}";
-        public Country Country { get; set; } = country;
-        public int Age { get; set; } = age;
         public int Health { get; set; } = 100;
-        public int Happiness { get; set; } = 100;
-        public int Looks { get; set; } = 0;
-        public int Intelligence { get; set; } = 0;
-        public int Fitness { get; set; } = 0;
-
         public int Strength { get; set; } = 10;
+        public bool Alive => Health > 0;
+
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+    public class NPC : Person, INotifyPropertyChanged
+    {
+        public static readonly Random Random = new Random();
+
+        public Country Country { get; set; }
+        public int Age { get; set; }
+        public bool Female { get; set; }
+        public string FullName => $"{FirstName} {LastName}";
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public NPC()
+        {
+            FirstName = FirstNameRnd();
+            LastName = FamilyNameRnd();
+            Country = Country.countryList[Random.Next(0, Country.countryList.Count)];
+            Age = Random.Next(18, 100);
+            Female = Random.Next(0, 2) == 1;
+        }
+        private string FirstNameRnd()
+        {
+            int firstRandom = Random.Next(0, 100);
+            string randomFirst = Female ? WordBank.FemaleFirstNames[firstRandom] : WordBank.MaleFirstNames[firstRandom];
+            return randomFirst;
+        }
+        private static string FamilyNameRnd()
+        {
+            int familyRandom = Random.Next(0, 100);
+            return WordBank.FamilyNames[familyRandom];
+        }
+        public int Salary { get; set; } = 0;
+        public int Money { get; set; } = 0;
+        public bool Employed { get; set; } = false;
+        public bool Student { get; set; } = false;
+        public int Happiness { get; set; } = 100;
+        public int Looks { get; set; } = Random.Next(0, 101);
+        public int Intelligence { get; set; } = Random.Next(0, 101);
+        public int Fitness { get; set; } = Random.Next(0, 101);
+        public School? School { get; set; }
+        public List<string> Skills { get; set; } = new List<string>();
+        public List<Relationship> Relationships { get; set; } = new List<Relationship>();
+        public List<Activity> Activities { get; set; } = new List<Activity>();
         public string AgeGroup
         {
             get
@@ -46,65 +88,39 @@ namespace ByteLife2
                 }
             }
         }
-        public bool Female { get; set; } = female;
 
-        public int Salary { get; set; } = 0;
-        public int Money { get; set; } = 0;
+    }
+    public class Player(string firstname, string lastname, Country country, bool female) : NPC, INotifyPropertyChanged
+    {
+        public new string FirstName { get; set; } = firstname;
+        public new string LastName { get; set; } = lastname;
+        public new Country Country { get; set; } = country;
+        public new bool Female { get; set; } = female;
 
-        public bool Employed { get; set; } = false;
-
-        public bool Student { get; set; } = false;
-
-        public bool Player { get; set; } = false;
-        public School ? School { get; set; }
-
-        public List<string> Skills { get; set; } = new List<string>();
-        public List<Relationship> Relationships { get; set; } = relationships ?? new List<Relationship>();
-
-        public List<Activity> Activities { get; set; } = new List<Activity>();
-        public static Person? MainCharacter { get; set; }
-
-        public static readonly List<string> FemaleFirstNames = ["Hanna", "Léna", "Zoé", "Anna", "Luca", "Emma", "Olívia", "Boglárka", "Lili", "Mira", "Laura", "Lara", "Sára", "Zsófia", "Alíz", "Izabella", "Lilien", "Kamilla", "Gréta", "Flóra", "Janka", "Jázmin", "Szofia", "Nóra", "Adél", "Maja", "Liza", "Lilla", "Bella", "Linett", "Zselyke", "Dorka", "Liliána", "Fanni", "Csenge", "Blanka", "Rebeka", "Natasa", "Panna", "Viktória", "Dorina", "Dóra", "Noémi", "Nara", "Emília", "Róza", "Bianka", "Réka", "Elizabet", "Szofi", "Petra", "Szófia", "Abigél", "Milla", "Júlia", "Eszter", "Lotti", "Mia", "Szonja", "Elena", "Norina", "Vivien", "Lia", "Panka", "Zorka", "Eliza", "Amira", "Natália", "Hanga", "Boróka", "Emili", "Johanna", "Odett", "Zejnep", "Nazira", "Hédi", "Lujza", "Bíborka", "Fruzsina", "Diána", "Tamara", "Zora", "Nina", "Lora", "Alina", "Lana", "Mirella", "Regina", "Elina", "Letícia", "Borbála", "Emese", "Zita", "Kincső", "Kiara", "Dorottya", "Mirabella", "Alexandra", "Vanda", "Annabella"];
-
-        public static readonly List<string> MaleFirstNames = ["Dominik", "Olivér", "Levente", "Máté", "Marcell", "Noel", "Bence", "Zalán", "Milán", "Ádám", "Botond", "Dániel", "Zsombor", "Benett", "Áron", "Dávid", "Balázs", "Benedek", "Nimród", "Márk", "Zente", "Nolen", "Bálint", "Péter", "Kristóf", "László", "Zétény", "Tamás", "Barnabás", "Kornél", "Alex", "Hunor", "András", "Martin", "Gergő", "Zoltán", "Márton", "Attila", "Ábel", "Ákos", "Patrik", "Bendegúz", "Vince", "Gábor", "Soma", "István", "Erik", "Sándor", "Krisztián", "Zsolt", "József", "Benjámin", "János", "Roland", "Mátyás", "Csongor", "Ármin", "Nándor", "Kevin", "Ferenc", "Vencel", "Csaba", "Róbert", "Norbert", "Richárd", "Benjamin", "Mihály", "Kende", "Boldizsár", "Szabolcs", "Simon", "Zénó", "Viktor", "Gergely", "Tibor", "Vilmos", "Dorián", "Miron", "Laurent", "Bende", "Nátán", "Teodor", "Bertalan", "Denisz", "Mirkó", "Adrián", "Miklós", "Félix", "Donát", "Krisztofer", "Sámuel", "Imre", "Brájen", "Noé", "Gellért", "Eliot", "Dénes", "Merse", "Alexander", "Iván"];
-
-        public static readonly List<string> FamilyNames = ["Antal", "Bakos", "Balázs", "Bálint", "Balla", "Balog", "Balogh", "Barna", "Barta", "Berki", "Biró", "Bodnár", "Bogdán", "Bognár", "Borbély", "Boros", "Budai", "Csonka", "Deák", "Dudás", "Fábián", "Faragó", "Farkas", "Fazekas", "Fehér", "Fekete", "Fodor", "Fülöp", "Gál", "Gáspár", "Gulyás", "Hajdu", "Halász", "Hegedűs", "Hegedüs", "Horváth", "Illés", "Jakab", "Jónás", "Juhász", "Katona", "Kelemen", "Kerekes", "Király", "Kis", "Kiss", "Kocsis", "Kovács", "Kozma", "Lakatos", "László", "Lengyel", "Lukács", "Magyar", "Major", "Márton", "Máté", "Mészáros", "Mezei", "Molnár", "Nagy", "Nemes", "Németh", "Novák", "Oláh", "Orbán", "Orosz", "Orsós", "Pál", "Pap", "Papp", "Pásztor", "Pataki", "Péter", "Pintér", "Rácz", "Sándor", "Sárközi", "Simon", "Sipos", "Somogyi", "Soós", "Szabó", "Szalai", "Székely", "Szilágyi", "Szőke", "Szűcs", "Szücs", "Takács", "Tamás", "Tóth", "Török", "Váradi", "Varga", "Vass", "Veres", "Vincze", "Virág", "Vörös"];
-
-        private static Random Random = new Random();
-        public static List<Person> People(int number, Country country)
+        public static Person Mother(Random random, Player player)
         {
-            var list = new List<Person>();
-
-            for (int i = 0; i < number; i++)
-            {
-                int firstRandom = Random.Next(0, 100);
-                int familyRandom = Random.Next(0, 100);
-                bool female = Random.Next(0, 2) == 1;
-                string randomFirst = female ? FemaleFirstNames[firstRandom] : MaleFirstNames[firstRandom];
-                string randomFamily = FamilyNames[familyRandom];
-                Person person = new(randomFirst, randomFamily, country, Random.Next(13, 90), female, relationships: []);
-                list.Add(person);
-            }
-            return list;
-
-        }
-
-        public static Person Mother(Random random, Person player)
-        {
-            int firstRandomF = Random.Next(0, FemaleFirstNames.Count);
-            int maidenRandom = Random.Next(0, FamilyNames.Count);
-            Person mother = new(FemaleFirstNames[firstRandomF], player.LastName + "-" + FamilyNames[maidenRandom], player.Country, 0, true, relationships: []);
+            int firstRandomF = random.Next(0, WordBank.FemaleFirstNames.Count);
+            int maidenRandom = random.Next(0, WordBank.FamilyNames.Count);
+            NPC mother = new();
+            mother.FirstName = WordBank.FemaleFirstNames[firstRandomF];
+            mother.LastName = player.LastName + "-" + WordBank.FamilyNames[maidenRandom];
+            mother.Country = player.Country;
+            mother.Female = true;
             return mother;
         }
 
-        public static Person Father(Random random, Person player)
+        public static Person Father(Random random, Player player)
         {
-            int firstRandom = Random.Next(0, MaleFirstNames.Count);
-            Person father = new(MaleFirstNames[firstRandom], player.LastName, player.Country, 0, false, relationships: []);
+            int firstRandom = random.Next(0, WordBank.MaleFirstNames.Count);
+            NPC father = new();
+            father.FirstName = WordBank.MaleFirstNames[firstRandom];
+            father.LastName = player.LastName;
+            father.Country = player.Country;
+            father.Female = false;
             return father;
         }
 
-        public static List<Person> Siblings(Random random, Person player, Person mother)
+        public static List<Person> Siblings(Random random, Player player, NPC mother)
         {
             List<Person> siblings = new List<Person>();
             int siblingCount = mother.Age == 18 ? random.Next(0, 3) : (mother.Age <= 25 ? random.Next(0, 4) : random.Next(0, 6));
@@ -115,26 +131,34 @@ namespace ByteLife2
                 string firstName = "";
                 if (female)
                 {
-                    int firstRandomF = Random.Next(0, FemaleFirstNames.Count);
-                    firstName = FemaleFirstNames[firstRandomF];
+                    int firstRandomF = Random.Next(0,WordBank.FemaleFirstNames.Count);
+                    firstName = WordBank.FemaleFirstNames[firstRandomF];
                 }
                 else
                 {
-                    int firstRandom = Random.Next(0, FemaleFirstNames.Count);
-                    firstName = MaleFirstNames[firstRandom];
+                    int firstRandom = Random.Next(0, WordBank.FemaleFirstNames.Count);
+                    firstName = WordBank.MaleFirstNames[firstRandom];
                 }
-                Person sibling = new(firstName, player.LastName, player.Country, siblingAge, female, relationships: []);
+                NPC sibling = new();
+                sibling.FirstName = firstName;
+                sibling.LastName = player.LastName;
+                sibling.Country = player.Country;
+                sibling.Age = siblingAge;
+                sibling.Female = female;
                 siblings.Add(sibling);
             }
             return siblings;
         }
 
-        public event PropertyChangedEventHandler ? PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
+    }
+    public class NPC_CheapEnemy : Person,INotifyPropertyChanged
+    {
+        private static readonly Random Random = new();
+        public NPC_CheapEnemy()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Health = Random.Next(30, 101);
+            Strength = Random.Next(1, 101);
+
         }
     }
-
 }
